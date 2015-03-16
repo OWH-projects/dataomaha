@@ -1,0 +1,56 @@
+{% load humanize %}
+
+<html>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+
+<head>
+	<style>
+		body { margin: 0; }
+		a { color: inherit; text-decoration: none; }
+		div.top { width: 90%; margin: 0 auto 1em auto; border-bottom: 1px solid #eee; padding-bottom: 1em; }
+		div.pic { width: 15%; margin: 0 1em 0 0; float: left; }
+		div.pic img { width: 100%; border-radius: 10%; }
+		div.user { font-family: sans-serif; width: 90%; max-width: 265px; border: 1px solid #eee; padding: 20px 10px; }
+		div.text { float: left; width: 60%; text-align: left;  }
+		h3 { margin: 0; font-size: 100%; }
+		div.text p { margin: 0; font-size: 80%; }
+		em, span.count { color: #777; }
+		p.bio { font-size: 80%; }
+		p.bio { width: 90%; margin: 0 auto; }
+		a.button { margin-top: -0.25em; margin-right: 1em; padding: 0.25em 0.5em; background: #eee; border-radius: 10%; float: left; }
+	</style>
+</head>
+
+<body>
+
+	<div class="user">
+		<div class="top">
+			<div class="pic">
+				<a href="http://twitter.com/{{ user.screen_name }}" target="_blank"><img src="{{ user.profile_image_url }}" /></a>
+			</div>
+			
+			<div class="text">
+				<h3>{{ user.name }}</h3>
+				<p><em><a href="http://twitter.com/{{ user.screen_name }}" target="_blank">@{{ user.screen_name }}</a></em></p>
+			</div>
+		<div style="clear: both;"></div>
+			
+		</div>
+		
+		<p class="bio">{{ user.description }}<br><br><a href="#" class="button">Follow</a><span class="count">{{ user.followers_count|intcomma }} followers</span></p>
+
+	</div>
+	
+	<!--
+	<code>
+		&lt;iframe src="http://dataomaha.com/twitter/{{ user.screen_name }}" width="100%" height="350" frameborder="1"&gt;&lt;/iframe&gt;
+	</code>
+	-->
+	
+</body>
+
+</html>

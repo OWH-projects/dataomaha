@@ -1,0 +1,7 @@
+{% load i18n %}
+{% load rssplug %}
+
+	<div class="post">
+		<h5><a href="{{ item.link }}">{{ item.title|safe }}</a></h5>
+		<p class="text-muted small">{{ item.description|safe }}</p>
+	</div>

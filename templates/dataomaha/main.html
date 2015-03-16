@@ -1,0 +1,276 @@
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+   
+   
+   <!-- cache stuff {{timestamp}} -->
+
+	<title>Dataomaha.com - Interactive databases and information from The Omaha World-Herald</title>
+
+	<meta name="description" content="Interactive databases and informatin from the Omaha World-Herald, including Curbwise.com, Nebraska football rosters, Omaha and Douglas County employee salaries and Omaha homicide maps." />
+
+	<meta property="og:image" content="XXXXXXXXXX">
+	<meta property="fb:app_id" content="117714391577072">
+	
+    <!-- Twitter Card - Large image // Docs: https://dev.twitter.com/cards/types/summary-large-image -->	
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@OWHnews">
+	<meta name="twitter:creator" content="@dataomaha"><!-- change this to author's account, if applicable -->
+	<meta name="twitter:title" content="Interactive databases and information from The Omaha World-Herald">
+	<meta name="twitter:image:src" content="">
+	
+    <!-- Bootstrap base layer -->
+    <link href="http://dataomaha.com/media/scripts/bootstrap/3.2.0/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+	<link rel="stylesheet" href="/media/dataomaha/dataomaha-2015.css" type="text/css">
+    
+    <!-- Font Awesome icons, v4.3 -->
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    
+    <!--  Google fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700italic,400italic,700,300' rel='stylesheet' type='text/css'>
+
+
+	<!-- google analytics for dataomaha -->
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-17420602-3']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+
+	<!-- /google analytics -->
+	
+	<!-- BH Media Google Analytics  -->
+
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-43117949-3', 'omaha.com');
+			  ga('send', 'pageview');
+		</script>
+		
+	<!-- /BH Media Google Analytics -->
+	
+
+	<style type="text/css">
+	</style>
+
+	</head>
+
+  <body data-spy="scroll" data-target=".navbar-scroller">
+
+  
+  
+	<div class="jumbotron">
+    <div class="container">
+
+		<a href="http://omaha.com" target="_blank"><img class="logo" src="http://dataomaha.com/media/logo-owh-white.png"></a>
+		<h1>Dataomaha.com</h1>
+		<p class="lead">Interactive and data-driven projects from the Omaha World-Herald</p>
+		<p class="lead"><i class="fa fa-bar-chart-o"></i>&emsp;<i class="fa fa-code"></i>&emsp;<i class="fa fa-coffee"></i>&emsp;<i class="fa fa-refresh"></i></p>
+	</div>
+	</div>
+
+
+		<div id="featured">
+		
+			{% for app in apps %}
+
+			{% if app.featured == 1 %}
+
+				<div class="featured-app col-sm-4">
+					{% if app.image %}<a href="{{ app.link }}"><img src="/media/{{ app.image }}"></a>{% endif %}
+					<h2><a href="{{ app.link }}">{{ app.title }}</a></h2>
+					<p class="description">{{ app.description }}</p>
+		
+				</div>
+			
+			{% endif %}
+		
+			{% endfor %}
+			
+			<div style="clear: both;"></div>
+		
+		
+		</div>
+
+
+
+
+	<div class="container">
+	
+
+
+
+
+		<div class="row">
+
+
+
+	
+			<div id="blog" class="col-sm-2">
+			
+			
+			
+				    <h3>Nerd blog</h3>	
+				    <br>
+				    
+				    {% load rssplug %}
+				    {% rssplug "http://blog.dataomaha.com/feed" "dataomaha/blog-headlines.html" %}
+
+					<hr>
+			
+					<h3><a href="http://twitter.com/dataomaha" target="_blank" style="color: #000;">@dataomaha</a></h3>
+					<p><em>{{ tweets.0.user.description }}</em></p>
+					
+					<br />
+					{% for tweet in tweets %}
+						<li class="tweet">
+							<p><img src="{{ tweet.user.profile_image_url }}" class="avatar" /><a href="http://twitter.com/{{ tweet.user.screen_name }}" target="_blank">@{{ tweet.user.screen_name }}</a></p>
+							<p class="small text-muted">{{ tweet.text|urlize }}</p>
+							<p class="small text-muted"><a class="tweet-permalink" href="http://twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id }}">#</a></p>
+						</li>
+					{% endfor %}
+					
+					
+						
+			</div>
+		
+		
+
+
+			<div id="apps" class="col-sm-9 col-sm-offset-1">
+			 
+				<h3>Apps</h3>
+								
+	
+			<div id="all-apps" class="col-sm-12">
+				<div class="row">
+			{% for app in apps|dictsortreversed:"last_change" %}
+			
+			{% if app.featured == 0 %}
+	
+				<div class="app col-sm-4">
+	
+					{% if app.image %}<a href="{{ app.link }}"><img src="/media/{{ app.image }}"></a>{% endif %}
+					
+					<div class="app-text">
+						<h5><a href="{{ app.link }}">{{ app.title }}</a></h5>			
+						<p class="description">{{ app.description }}</p>			
+					</div>		
+				</div>
+				
+			{% endif %}
+			
+			{% endfor %}
+				</div>
+			</div><!-- /all-apps -->
+		
+		</div>
+
+	<div style="clear:both;"></div>
+
+
+	<div class="button"></div>
+
+
+
+
+	
+
+    </div><!-- /.container -->
+
+	</body>
+	
+	
+		<script src="/media/scripts/fun/jquery-1.4.1.min.js"></script>
+		<script src="/media/scripts/fun/jquery.raptorize.1.0.js"></script>
+		<script type="text/javascript">
+				$(window).load(function() {
+					$('.button').raptorize({
+						'enterOn' : 'konami-code'
+					});
+				});
+		</script>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://dataomaha.com/media/scripts/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+  
+  
+  <!-- Masonry http://masonry.desandro.com --> 
+	<script type="text/javascript" src="/media/scripts/masonry/masonry.pkgd.min.js"></script>
+
+	<script>
+	
+	jQuery(window).on('load', function($){
+		var container = document.querySelector('#all-apps');
+		var msnry = new Masonry( container, {
+		  // options
+		  itemSelector: '.app'
+		});
+	})
+	</script>
+
+  
+  
+	<!-- Chartbeat -->
+		<script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+
+		<script type="text/javascript">
+			var _sf_async_config={};
+			/** CONFIGURATION START **/
+			_sf_async_config.uid = 52047;
+			_sf_async_config.domain = 'omaha.com';
+			_sf_async_config.useCanonical = true;
+			_sf_async_config.sections = 'XXXXXXXXXX'; 
+			_sf_async_config.authors = 'Omaha.com';
+			/** CONFIGURATION END **/
+			(function(){
+			  function loadChartbeat() {
+				window._sf_endpt=(new Date()).getTime();
+				var e = document.createElement('script');
+				e.setAttribute('language', 'javascript');
+				e.setAttribute('type', 'text/javascript');
+				e.setAttribute('src', '//static.chartbeat.com/js/chartbeat.js');
+				document.body.appendChild(e);
+			  }
+			  var oldonload = window.onload;
+			  window.onload = (typeof window.onload != 'function') ?
+				 loadChartbeat : function() { oldonload(); loadChartbeat(); };
+			})();
+		</script>
+
+	<!-- Chartbeat -->
+
+  
+  </html>
